@@ -23,3 +23,11 @@ RPS1='${(e)git_info[rprompt]}'
 
 # Pi
 export PATH="/Users/dima/.local/share/fnm/node-versions/v24.18.0/installation/bin:$PATH"
+
+# dotfiles
+alias dotcd="cd ~/personal/.dotfiles"
+dotsync() {
+  git -C ~/personal/.dotfiles add -A \
+    && git -C ~/personal/.dotfiles commit -m "${*:-update $(date '+%Y-%m-%d %H:%M')}" \
+    && git -C ~/personal/.dotfiles push
+}
