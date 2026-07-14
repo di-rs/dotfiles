@@ -3,7 +3,12 @@
 set -euo pipefail
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PACKAGES=(helix ghostty zsh herdr pi agent-skills claude)
+PACKAGES=(brew helix ghostty zsh herdr pi agent-skills claude)
+
+if ! command -v brew >/dev/null 2>&1; then
+  echo "Homebrew is required: https://brew.sh"
+  exit 1
+fi
 
 if ! command -v stow >/dev/null 2>&1; then
   echo "Installing GNU Stow..."
@@ -12,6 +17,9 @@ fi
 
 cd "$DOTFILES_DIR"
 stow -v -t "$HOME" "${PACKAGES[@]}"
+
+echo "Installing Homebrew packages from .Brewfile..."
+brew bundle --global
 
 echo
 echo "Done. A few things stow can't do for you:"

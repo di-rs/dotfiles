@@ -1,13 +1,15 @@
 # dotfiles
 
-Personal configs for helix, ghostty, zsh/zim, herdr, pi, Claude Code, and the
-agent-skills registry, managed with [GNU Stow](https://www.gnu.org/software/stow/).
+Personal configs for Homebrew packages, helix, ghostty, zsh/zim, herdr, pi,
+Claude Code, and the agent-skills registry, managed with
+[GNU Stow](https://www.gnu.org/software/stow/).
 
 Each top-level directory is a stow package whose internal path mirrors `$HOME`.
 
 ## Layout
 
 ```
+brew/.Brewfile
 helix/.config/helix/config.toml
 ghostty/.config/ghostty/config.ghostty
 zsh/.zshrc .zshenv .zprofile .zimrc
@@ -15,6 +17,15 @@ herdr/.config/herdr/config.toml
 pi/.pi/agent/settings.json
 agent-skills/.agents/.skill-lock.json
 claude/.claude/settings.json .claude/plugins/known_marketplaces.json
+```
+
+`.Brewfile` is generated with `brew bundle dump` and read via
+`brew bundle --global` (which looks for `~/.Brewfile`). Regenerate it after
+installing/removing packages:
+
+```sh
+brew bundle dump --file=~/personal/.dotfiles/brew/.Brewfile --force
+dotsync "update Brewfile"
 ```
 
 ## Install
@@ -25,8 +36,9 @@ cd ~/personal/.dotfiles
 ./install.sh
 ```
 
-`install.sh` installs GNU Stow if missing, then symlinks every package into
-`$HOME`. If a target file already exists (e.g. a fresh machine's default
+`install.sh` installs GNU Stow if missing, symlinks every package into
+`$HOME`, then runs `brew bundle --global` to install everything listed in
+`.Brewfile`. If a target file already exists (e.g. a fresh machine's default
 `.zshrc`), stow will refuse to overwrite it — move it aside first.
 
 After stowing, restore agent skills from the lockfile:
