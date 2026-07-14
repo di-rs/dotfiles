@@ -3,23 +3,34 @@
 set -euo pipefail
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PACKAGES=(brew helix ghostty zsh herdr pi agent-skills claude)
+PACKAGES=(helix ghostty zsh herdr pi agent-skills claude)
 
-if ! command -v brew >/dev/null 2>&1; then
-  echo "Homebrew is required: https://brew.sh"
-  exit 1
+IS_MACOS=false
+[[ "$(uname -s)" == "Darwin" ]] && IS_MACOS=true
+
+# brew (.Brewfile) and macos (.zprofile) are Mac-only; skip on Linux.
+if $IS_MACOS; then
+  PACKAGES+=(brew macos)
 fi
 
 if ! command -v stow >/dev/null 2>&1; then
-  echo "Installing GNU Stow..."
-  brew install stow
+  if $IS_MACOS; then
+    echo "Installing GNU Stow..."
+    brew install stow
+  else
+    echo "GNU Stow is required. Install it with your distro's package" \
+         "manager (e.g. apt install stow) and re-run this script."
+    exit 1
+  fi
 fi
 
 cd "$DOTFILES_DIR"
 stow -v -t "$HOME" "${PACKAGES[@]}"
 
-echo "Installing Homebrew packages from .Brewfile..."
-brew bundle --global
+if $IS_MACOS; then
+  echo "Installing Homebrew packages from .Brewfile..."
+  brew bundle --global
+fi
 
 echo
 echo "Done. A few things stow can't do for you:"

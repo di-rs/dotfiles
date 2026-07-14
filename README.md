@@ -9,15 +9,20 @@ Each top-level directory is a stow package whose internal path mirrors `$HOME`.
 ## Layout
 
 ```
-brew/.Brewfile
+brew/.Brewfile                  (macOS only)
+macos/.zprofile                 (macOS only)
 helix/.config/helix/config.toml
 ghostty/.config/ghostty/config.ghostty
-zsh/.zshrc .zshenv .zprofile .zimrc
+zsh/.zshrc .zshenv .zimrc
 herdr/.config/herdr/config.toml
 pi/.pi/agent/settings.json
 agent-skills/.agents/.skill-lock.json
 claude/.claude/settings.json .claude/plugins/known_marketplaces.json
 ```
+
+`brew` and `macos` are only stowed on macOS (`install.sh` checks `uname -s`).
+On Linux, `.Brewfile` and the Mac-specific `.zprofile` PATH entries are
+skipped entirely — everything else is cross-platform.
 
 `.Brewfile` is generated with `brew bundle dump` and read via
 `brew bundle --global` (which looks for `~/.Brewfile`). Regenerate it after
@@ -36,8 +41,10 @@ cd ~/personal/.dotfiles
 ./install.sh
 ```
 
-`install.sh` installs GNU Stow if missing, symlinks every package into
-`$HOME`, then runs `brew bundle --global` to install everything listed in
+`install.sh` detects the OS, installs GNU Stow if missing (via Homebrew on
+macOS; on Linux it expects your distro's package manager, e.g.
+`apt install stow`), symlinks the relevant packages into `$HOME`, and on
+macOS runs `brew bundle --global` to install everything listed in
 `.Brewfile`. If a target file already exists (e.g. a fresh machine's default
 `.zshrc`), stow will refuse to overwrite it — move it aside first.
 
