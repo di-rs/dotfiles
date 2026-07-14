@@ -8,8 +8,6 @@
 
 # Sets sane Zsh built-in environment options.
 zmodule environment
-# Provides handy git aliases and functions.
-zmodule git
 # Applies correct bindkeys for input events.
 zmodule input
 # Sets a custom terminal title.
@@ -42,6 +40,10 @@ zmodule zsh-users/zsh-completions --fpath src
 # Enables and configures smart and extensive tab completion, must be sourced
 # after all modules that add completion definitions.
 zmodule completion
+# Oh My Zsh's git plugin, loaded straight from upstream for identical aliases
+# (gst, ga, gaa, gc, gcmsg, gco, gcb, gp, gl, gd, gss, gsta, grb, glog, ...).
+# Must load after completion so its compdef calls resolve.
+zmodule ohmyzsh/ohmyzsh --root plugins/git
 zmodule direnv
 zmodule exa
 zmodule utility
