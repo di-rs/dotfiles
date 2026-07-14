@@ -54,6 +54,15 @@ After stowing, restore agent skills from the lockfile:
 npx skills experimental_install -g
 ```
 
+fnm has no config file — its behavior comes from env vars set in `.zshrc`
+(already tracked) plus whichever version is symlinked as its `default` alias,
+which lives in fnm's data dir, not something stow can track. `install.sh`
+pins that explicitly: `fnm install --lts && fnm default lts-latest`, then
+reinstalls the global `pi` npm package under it. Don't hardcode a Node bin
+path into `.zshrc` for tools like `pi` — that silently pins to whatever
+version was default at the time and stops tracking `fnm default` when it
+changes (this repo hit exactly that bug once).
+
 ## What's deliberately excluded
 
 This repo only ever contains configuration, never state or secrets:

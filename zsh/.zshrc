@@ -20,9 +20,6 @@ source ${ZIM_HOME}/init.zsh
 PS1=$'%F{244}$(prompt-pwd)%f ${SSH_TTY:+"%m "}${VIRTUAL_ENV:+"${VIRTUAL_ENV:t} "}%(1j.%{\E[${MNML_BGJOB_MODE}m%}.)%F{%(?.${MNML_OK_COLOR}.${MNML_ERR_COLOR})}%(!.#.${MNML_USER_CHAR})%f%{\E[0m%} $(_prompt_mnml_keymap) '
 RPS1='${(e)git_info[rprompt]}'
 
-# Pi
-export PATH="/Users/dima/.local/share/fnm/node-versions/v24.18.0/installation/bin:$PATH"
-
 # dotfiles
 alias dotcd="cd ~/personal/.dotfiles"
 dotsync() {
