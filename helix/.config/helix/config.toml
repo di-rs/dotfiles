@@ -2,6 +2,7 @@ theme = "tokyonight"
 
 [editor]
 line-number = "relative"
+default-yank-register = "+"
 
 [editor.file-picker]
 hidden = false
