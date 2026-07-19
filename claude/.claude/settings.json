@@ -23,18 +23,6 @@
     "DISABLE_TELEMETRY": "1"
   },
   "extraKnownMarketplaces": {
-    "365-skills": {
-      "source": {
-        "repo": "Agents365-ai/365-skills",
-        "source": "github"
-      }
-    },
-    "caveman": {
-      "source": {
-        "repo": "JuliusBrussee/caveman",
-        "source": "github"
-      }
-    },
     "plannotator": {
       "source": {
         "repo": "backnotprop/plannotator",
@@ -60,7 +48,7 @@
       {
         "hooks": [
           {
-            "command": "bash '/home/dima/.claude/hooks/herdr-agent-state.sh' session",
+            "command": "bash '$HOME/.claude/hooks/herdr-agent-state.sh' session",
             "timeout": 10,
             "type": "command"
           }
@@ -72,7 +60,7 @@
       {
         "hooks": [
           {
-            "command": "python3 '/home/dima/.claude/hooks/check-pr-title.py'",
+            "command": "python3 '$HOME/.claude/hooks/check-pr-title.py'",
             "type": "command"
           }
         ],
