@@ -1,7 +1,7 @@
 # dotfiles
 
-Personal configs for Homebrew packages, helix, ghostty, zsh/zim, herdr, pi,
-Claude Code, and the agent-skills registry, managed with
+Personal configs for Homebrew packages, helix, ghostty, yazi, zsh/zim, herdr,
+pi, Claude Code, and the agent-skills registry, managed with
 [GNU Stow](https://www.gnu.org/software/stow/).
 
 Each top-level directory is a stow package whose internal path mirrors `$HOME`.
@@ -14,6 +14,7 @@ macos/.zprofile                                                         (macOS o
 karabiner/.config/karabiner/assets/complex_modifications/*.json         (macOS only)
 helix/.config/helix/config.toml .config/helix/languages.toml
 ghostty/.config/ghostty/config.ghostty
+yazi/.config/yazi/yazi.toml theme.toml flavors/ayu-dark.yazi/
 zsh/.zshrc .zshenv .zimrc
 herdr/.config/herdr/config.toml
 pi/.pi/agent/settings.json

@@ -17,3 +17,16 @@ after-delay.timeout = 3000
 #   [g   jump to previous changed hunk
 #   ]G   jump to last changed hunk
 #   [G   jump to first changed hunk
+
+# Ctrl-y: browse with yazi as a file picker; open the chosen file back in Helix.
+# https://yazi-rs.github.io/docs/tips (Helix integration)
+[keys.normal]
+C-y = [
+  ':sh rm -f /tmp/unique-ca1ea106',
+  ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/unique-ca1ea106',
+  ':sh printf "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+  ':open %sh{cat /tmp/unique-ca1ea106}',
+  ':redraw',
+  ':set mouse false',
+  ':set mouse true',
+]

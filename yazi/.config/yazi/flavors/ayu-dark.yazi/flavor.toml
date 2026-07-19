@@ -117,12 +117,9 @@ selected = { bg = "#11151c" }
 # : Completion :
 
 [cmp]
-border       = { fg = "#e6b450" }
-active       = { fg = "#0b0e14", bg = "#e6b450", bold = true }
-inactive     = { fg = "#bfbdb6" }
-icon_file    = { fg = "#59c2ff" }
-icon_folder  = { fg = "#e6b450" }
-icon_command = { fg = "#aad94c" }
+border   = { fg = "#e6b450" }
+active   = { fg = "#0b0e14", bg = "#e6b450", bold = true }
+inactive = { fg = "#bfbdb6" }
 
 # : Tasks :
 
