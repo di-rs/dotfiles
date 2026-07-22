@@ -6,6 +6,4 @@ skip_global_compinit=1
 
 # uv / local bin (uv, zoxide, user binaries)
 export PATH="$HOME/.local/bin:$PATH"
-
-export RUSTFLAGS="-C target-feature=-crt-static"
-
+export PATH="$HOME/.cargo/bin:$PATH"
