@@ -43,40 +43,5 @@
     }
   },
   "feedbackSurveyRate": 0,
-  "hooks": {
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "command": "bash '$HOME/.claude/hooks/herdr-agent-state.sh' session",
-            "timeout": 10,
-            "type": "command"
-          }
-        ],
-        "matcher": "*"
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "command": "if command -v osascript >/dev/null 2>&1; then osascript -e 'display notification \"Turn finished\" with title \"Claude Code\"'; elif command -v notify-send >/dev/null 2>&1; then notify-send 'Claude Code' 'Turn finished'; fi",
-            "type": "command"
-          }
-        ],
-        "matcher": "*"
-      }
-    ],
-    "Notification": [
-      {
-        "hooks": [
-          {
-            "command": "if command -v osascript >/dev/null 2>&1; then osascript -e 'display notification \"Needs your input\" with title \"Claude Code\"'; elif command -v notify-send >/dev/null 2>&1; then notify-send 'Claude Code' 'Needs your input'; fi",
-            "type": "command"
-          }
-        ],
-        "matcher": "*"
-      }
-    ]
-  }
+  "preferredNotifChannel": "notifications_disabled"
 }
